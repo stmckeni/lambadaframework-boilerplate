@@ -79,5 +79,40 @@ public class ExampleController {
                 .entity(new Entity(requestEntity.name))
                 .build();
     }
+	/**
+	* This will be the request used to upload binary photos
+	*/
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/v1/lambda")
+	public Response upload_dat_lambda(
+		NewEntityRequest rdatq
+	){
+		logger.debug("upload image");
+		String alak = Response.readEntity(String.class);
+		String abr = Response.MediaType(APPLICATION_JSON).entity().build();
+		return Response.status(200)
+				.entity(alak)
+				.entity(abr)
+				.build();
+	}
+
+	@GET
+@Path("{id}")
+@Consumes( MediaType.APPLICATION_JSON )
+public Response getCorsByItsId(
+@PathParam("id") Long id,
+@QueryParam("detailed") boolean detailed_id
+
+) {
+	
+	return Response.status(200)
+			.entity(id)
+			.entity(detailed_id)
+			.header("Access-Control-Allow-Origin", "*") //allow cors access everywhere
+			.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT") //allows all the methods I could think of
+			.allow("OPTIONS")
+			.build();
+}
 
 }
